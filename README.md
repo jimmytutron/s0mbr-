@@ -11,7 +11,7 @@ Make sure you have node.js installed on your computer! You can download it via t
 ```
 https://nodejs.org/en/download/
 ```
-Then clone down this repo.
+Then either clone or download this repo.
 
 ### Installation :file_folder:
 Inside your terminal or command prompt, navigate to the location of the cloned repo. Install the necessary dependencies by running - 
