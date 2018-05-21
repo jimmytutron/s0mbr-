@@ -1,5 +1,5 @@
-# s0mbr@
-:skull: Sombra hacked Siri - a command line node app
+# s0mbr@ :skull:
+
 ![demo](demo1.gif)
 
 Looks like Sombra's in the mood for some fun. In this command line app built with node, Sombra will take in various paramaters, hack the web, and bring that data back to you, displaying it in the terminal. Why the terminal? She's a hacker afterall, and doesn't want the taraditas to easily access her code. 
@@ -21,11 +21,13 @@ npm i
 In order for the application to run certain commands you will need your own set of keys and tokens from Twitter and Spotify. Generate the keys via Twitter and Spotify's developer sites and store them in a `.env` file
 
 ## Using the App :computer:
+
 ![demo2](demo2.gif)
 
 Type `node sombra.js` into your terminal to begin using the app. You can navigate through the commands using the up and down arrows and hitting enter. 
 
 To exit the app either hold down `control + c` or select the last command `¡Apagando las luces!`
+
 ![demo3](demo3.gif)
 
 ## Built With :cd:
