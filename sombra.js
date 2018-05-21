@@ -40,6 +40,7 @@ var skull = `
 
 askHack();
 
+//prompt the user with available commands
 function askHack() {
     inquirer.prompt([{
             type: "list",
@@ -47,6 +48,7 @@ function askHack() {
             choices: ["Hack Twitter", "Hack Spotify", "Hack OMDB", "¡Adelante!", "¡Apagando las luces!"],
             name: "hacks"
         }])
+    //intialize a function based on their selection
         .then(function(beginHack) {
             switch (beginHack.hacks) {
                 case "Hack Twitter":
@@ -71,6 +73,7 @@ function askHack() {
         });
 }
 
+//repeat the prompt after the function ends
 function repeat(prompt) {
     inquirer.prompt([{
         type: "input",
@@ -79,23 +82,24 @@ function repeat(prompt) {
     }]).then(prompt);
 }
 
+//grab 20 tweets based on twitter handle that user inputs
 function hackTwitter() {
     inquirer.prompt({
         type: "input",
         message: "Así me gusta. Enter a Twitter handle, por favor.",
         name: "twitterHandle"
     }).then(function(response) {
-        // console.log(response);
-        // console.log(response.twitterHandle)
         var screenName = response.twitterHandle;
-        if (!screenName) { screenName = "Snowden"; }
+        //if user doesn't enter anything, grab tweets from Overwatch's twitter
+        if (!screenName) { screenName = "PlayOverwatch"; }
 
         var params = { screen_name: screenName, tweet_mode: 'extended' };
         twitter.get("statuses/user_timeline", params, function(error, tweets, repsonse) {
             if (!error) {
+            	//display the tweets in the terminal
                 for (var i = 0; i < tweets.length; i++) {
                     console.log("\n========================================");
-                    console.log("\n Tweeted on" + tweets[i].created_at);
+                    console.log("\n Tweeted on " + tweets[i].created_at);
                     console.log("\n Tweet: " + tweets[i].full_text);
                     console.log("\n Tweeted By: " + tweets[i].user.name);
                     console.log("\n========================================");
@@ -106,6 +110,7 @@ function hackTwitter() {
     });
 }
 
+//displays info about a song based on what user inputs
 function hackSpotify() {
     inquirer.prompt({
         type: "input",
@@ -113,7 +118,7 @@ function hackSpotify() {
         name: "song"
     }).then(function(response) {
         var songName = response.song;
-
+        //if user enters no song name, play "Rally the Heroes" from the Overwatch soundtrack
         if (!songName) { songName = "Rally the Heroes"; }
 
         spotify.search({
@@ -124,6 +129,7 @@ function hackSpotify() {
             var songInfo = data.tracks.items[0];
 
             if (!error) {
+            	//display if user enters a song that cannot be found, or too vague
                 if (!songInfo) {
                     console.log("Lo siento, I couldn't find that song. Intentamos otra vez.");
                 } else {
@@ -142,6 +148,7 @@ function hackSpotify() {
     });
 }
 
+//displays info about a movie based on what user inputs
 function hackMovie() {
     inquirer.prompt({
         type: "input",
@@ -173,34 +180,34 @@ function hackMovie() {
     });
 }
 
+//plays the song listed in the random.txt
 function adelante() {
     fs.readFile("random.txt", "utf8", function(error, data) {
-    	var song = data.split(", ");
+        var song = data.split(", ");
         if (!error) {
 
-        spotify.search({
-            type: "track",
-            query: song[1]
-        }, function(error, data) {
+            spotify.search({
+                type: "track",
+                query: song[1]
+            }, function(error, data) {
 
-            var songInfo = data.tracks.items[0];
+                var songInfo = data.tracks.items[0];
 
-            if (!error) {
-            		console.log("¡Qué pex!, D.VA was showing me some kpop, I really like this one. It's muy feugo")
+                if (!error) {
+                    console.log("¡Qué pex!, D.VA was showing me some kpop, I really like this one. It's muy feugo")
                     console.log(songInfo.name);
                     console.log("By - " + songInfo.artists[0].name);
                     console.log("Listen here - " + songInfo.preview_url);
-                repeat(askHack);
-            }
-        })
+                    repeat(askHack);
+                }
+            })
 
         }
-})
+    })
 }
 
-
-
+//exits the app, displays cool ASCII art B)
 function EMP() {
-	console.log("EMP ACTIAVTED");
-	console.log(skull);
+    console.log("EMP ACTIAVTED, Ahí nos vidrios.");
+    console.log(skull);
 }
