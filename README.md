@@ -37,6 +37,7 @@ To exit the app either hold down `control + c` or select the last command `¡Apa
 * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
 * [request](https://www.npmjs.com/package/request)
 * [dotenv](https://www.npmjs.com/package/dotenv)
+* [inquirer](https://www.npmjs.com/package/inquirer)
 
 ## Author :key:
 * **Jimmy Tu** - [jimmytutron](https://github.com/jimmytutron)
