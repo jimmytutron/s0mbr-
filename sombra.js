@@ -58,15 +58,15 @@ function askHack() {
                 case "Hack OMDB":
                     hackMovie();
                     break;
-                    //     case "¡Adelante!":
-                    //         adelante();
-                    //         break;
-                    //     case "¡Apagando las luces!":
-                    //         EMP();
-                    //         break;
-                    //     default:
-                    //         EMP();
-                    //         break;
+                case "¡Adelante!":
+                    adelante();
+                    break;
+                case "¡Apagando las luces!":
+                    EMP();
+                    break;
+                default:
+                    EMP();
+                    break;
             }
         });
 }
@@ -154,21 +154,53 @@ function hackMovie() {
 
         var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
         request(queryURL, function(error, response, body) {
-        	var movieInfo = JSON.parse(response.body);
+            var movieInfo = JSON.parse(response.body);
             if (!error && response.statusCode === 200) {
-            	console.log("\nTorrenting " + movie + " to c://user/desktop")
-            	console.log("\nReleased - " + movieInfo.Year);
-            	console.log("IMBD Rating - " + movieInfo.imdbRating);
-            	console.log("RT Score - " + movieInfo.Ratings[1].Value);
-            	console.log("Country - " + movieInfo.Country);
-            	console.log("Language - " + movieInfo.Language);
-            	console.log("Actors - " + movieInfo.Actors);
-            	console.log("Plot Summary - " + movieInfo.Plot);
+                console.log("\nTorrenting " + movie + " to c://user/desktop")
+                console.log("\nReleased - " + movieInfo.Year);
+                console.log("IMBD Rating - " + movieInfo.imdbRating);
+                console.log("RT Score - " + movieInfo.Ratings[1].Value);
+                console.log("Country - " + movieInfo.Country);
+                console.log("Language - " + movieInfo.Language);
+                console.log("Actors - " + movieInfo.Actors);
+                console.log("Plot Summary - " + movieInfo.Plot);
 
-            	repeat(askHack);
+                repeat(askHack);
             }
         })
 
 
     });
+}
+
+function adelante() {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+    	var song = data.split(", ");
+        if (!error) {
+
+        spotify.search({
+            type: "track",
+            query: song[1]
+        }, function(error, data) {
+
+            var songInfo = data.tracks.items[0];
+
+            if (!error) {
+            		console.log("¡Qué pex!, D.VA was showing me some kpop, I really like this one. It's muy feugo")
+                    console.log(songInfo.name);
+                    console.log("By - " + songInfo.artists[0].name);
+                    console.log("Listen here - " + songInfo.preview_url);
+                repeat(askHack);
+            }
+        })
+
+        }
+})
+}
+
+
+
+function EMP() {
+	console.log("EMP ACTIAVTED");
+	console.log(skull);
 }
