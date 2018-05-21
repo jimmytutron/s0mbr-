@@ -208,6 +208,7 @@ function adelante() {
 
 //exits the app, displays cool ASCII art B)
 function EMP() {
-    console.log("EMP ACTIAVTED, Ahí nos vidrios.");
+    console.log("EMP ACTIAVTED");
     console.log(skull);
+    console.log("Ahí nos vidrios.");
 }
