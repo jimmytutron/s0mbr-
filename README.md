@@ -20,6 +20,21 @@ npm i
 ```
 In order for the application to run certain commands you will need your own set of keys and tokens from Twitter and Spotify. Generate the keys via Twitter and Spotify's developer sites and store them in a `.env` file
 
+In your `.env` file replace the values with your API keys (no quotes):
+```
+# Spotify API keys
+
+SPOTIFY_ID=your-spotify-id
+SPOTIFY_SECRET=your-spotify-secret
+
+# Twitter API keys
+
+TWITTER_CONSUMER_KEY=your-twitter-consumer-key
+TWITTER_CONSUMER_SECRET=your-twitter-consumer-secret
+TWITTER_ACCESS_TOKEN_KEY=your-access-token-key
+TWITTER_ACCESS_TOKEN_SECRET=your-twitter-access-token-secret
+```
+
 ## Using the App :computer:
 
 ![demo2](demo2.gif)
