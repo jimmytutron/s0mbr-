@@ -48,7 +48,7 @@ function askHack() {
             choices: ["Hack Twitter", "Hack Spotify", "Hack OMDB", "¡Adelante!", "¡Apagando las luces!"],
             name: "hacks"
         }])
-    //intialize a function based on their selection
+        //intialize a function based on their selection
         .then(function(beginHack) {
             switch (beginHack.hacks) {
                 case "Hack Twitter":
@@ -94,19 +94,22 @@ function hackTwitter() {
         if (!screenName) { screenName = "PlayOverwatch"; }
 
         var params = { screen_name: screenName, tweet_mode: 'extended' };
-        twitter.get("statuses/user_timeline", params, function(error, tweets, repsonse) {
-            if (!error) {
-            	//display the tweets in the terminal
-                for (var i = 0; i < tweets.length; i++) {
-                    console.log("\n========================================");
-                    console.log("\n Tweeted on " + tweets[i].created_at);
-                    console.log("\n Tweet: " + tweets[i].full_text);
-                    console.log("\n Tweeted By: " + tweets[i].user.name);
-                    console.log("\n========================================");
+
+        twitter.get("statuses/user_timeline",
+            params,
+            function(error, tweets, repsonse) {
+                if (!error) {
+                    //display the tweets in the terminal
+                    for (var i = 0; i < tweets.length; i++) {
+                        console.log("\n========================================");
+                        console.log("\n Tweeted on " + tweets[i].created_at);
+                        console.log("\n Tweet: " + tweets[i].full_text);
+                        console.log("\n Tweeted By: " + tweets[i].user.name);
+                        console.log("\n========================================");
+                    }
+                    repeat(askHack);
                 }
-                repeat(askHack);
-            }
-        })
+            })
     });
 }
 
@@ -129,7 +132,7 @@ function hackSpotify() {
             var songInfo = data.tracks.items[0];
 
             if (!error) {
-            	//display if user enters a song that cannot be found, or too vague
+                //display if user enters a song that cannot be found, or too vague
                 if (!songInfo) {
                     console.log("Lo siento, I couldn't find that song. Intentamos otra vez.");
                 } else {
